@@ -57,22 +57,6 @@ pipeline {
         }
         stage('Publish to Nexus'){
             steps{
-                // script{
-                //     def readPomVersion = readMavenPom file: 'pom.xml'
-
-                //     nexusArtifactUploader artifacts: [
-                //     [artifactId: 'database_service_project',
-                //     classifier: '',
-                //     file: 'target/*.jar',
-                //     type: 'jar']
-                // ],  credentialsId: 'nexus-auth',
-                //     groupId: 'com.javaproject',
-                //     nexusUrl: '20.62.166.251:8081',
-                //     nexusVersion: 'nexus3',
-                //     protocol: 'http',
-                //     repository: 'boardGame-release',
-                //     version: "${readPomVersion.version}"
-                // }
                 withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
                      sh "mvn deploy"
                 }
