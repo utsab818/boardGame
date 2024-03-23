@@ -9,7 +9,7 @@ pipeline {
         NEW_IMAGE = ''
         DOCKER_IMAGE = "utsab12312/boardgame:$BUILD_NUMBER"
         REPO_URL = 'https://github.com/utsab818/boardGame.git'
-        DEPLOYMENT_FILE = '/k8s/deployment-service.yaml'
+        DEPLOYMENT_FILE = 'k8s/deployment-service.yaml'
     }
 
     stages {
