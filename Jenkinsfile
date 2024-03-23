@@ -5,7 +5,7 @@ pipeline {
         maven 'maven3'
     }
     environment{
-        SONAR_SCANNER = tool 'sonar-scanner'
+        SCANNER_HOME = tool 'sonar-scanner'
         NEW_IMAGE = ''
         DOCKER_IMAGE = "utsab12312/boardgame:$BUILD_NUMBER"
         REPO_URL = 'https://github.com/utsab818/boardGame.git'
