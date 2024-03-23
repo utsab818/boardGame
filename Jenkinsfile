@@ -63,7 +63,7 @@ pipeline {
                     nexusArtifactUploader artifacts: [
                     [artifactId: 'database_service_project',
                     classifier: '',
-                    file: 'target/database_service_project.jar',
+                    file: 'target/*.jar',
                     type: 'jar']
                 ],  credentialsId: 'nexus-auth',
                     groupId: 'com.javaproject',
