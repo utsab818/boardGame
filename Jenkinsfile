@@ -73,7 +73,7 @@ pipeline {
                     repository: 'boardGame-release',
                     version: "${readPomVersion.version}"
                 }
-                }
+                
             }
         }
         stage('Delete previous docker image'){
