@@ -137,4 +137,24 @@ pipeline {
             }
         }
     }
+    post {
+            always {
+                emailext (
+                    subject: "Pipeline Status: ${BUILD_NUMBER}",
+                    body: '''<html>
+                                <body>
+                                    <p>Build Status: ${BUILD_STATUS}</p>
+                                    <p>Build Number: ${BUILD_NUMBER}</p>
+                                    <p>Check the <a href="${BUILD_URL}">console output</a>.</p>
+                                    <p>
+                                </body>
+                            </html>''',
+                    to: 'utsabsapkota4231@gmail.com',
+                    from: 'jenkins@example.com',
+                    replyTo: 'jenkins@example.com',
+                    mimeType: 'text/html',
+                    attachmentsPattern: 'trivy-fs-report.html trivy-image-report.html'
+                )
+            }
+        }
 }
