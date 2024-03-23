@@ -5,11 +5,11 @@ pipeline {
         maven 'maven3'
     }
     environment{
-        SONAR_SCANNER = 'sonar'
+        SONAR_SCANNER = tool 'sonar-scanner'
         NEW_IMAGE = ''
         DOCKER_IMAGE = "utsab12312/boardgame:$BUILD_NUMBER"
         REPO_URL = 'https://github.com/utsab818/boardGame.git'
-        DEPLOYMENT_FILE = '/k8s/deployment-service.yaml'
+        DEPLOYMENT_FILE = 'k8s/deployment-service.yaml'
     }
 
     stages {
@@ -28,9 +28,38 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        stage('Trivy Filesystem Scan'){
+            steps{
+                sh 'trivy fs --format table -o trivy-fs-report.html .'
+            }
+        }
+        stage('Sonarqube Analysis'){
+            steps{
+                withSonarQubeEnv(credentialsId: 'sonar-token') {
+                    sh '''
+                        $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=BoardGame \
+                        -Dsonar.projectKey=BoardGame -Dsonar.java.binaries=.
+                    '''
+                }
+            }
+        }
+        stage('Quality Gate'){
+            steps{
+                script{
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                }
+            }
+        }
         stage('Maven build'){
             steps{
                 sh 'mvn package'
+            }
+        }
+        stage('Publish to Nexus'){
+            steps{
+                withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
+                    sh "mvn deploy"
+                }
             }
         }
         stage('Delete previous docker image'){
@@ -59,7 +88,12 @@ pipeline {
                 }
             }
         }  
-        
+        stage('Trivy Dockerfile Scan'){
+            steps{
+                sh "trivy image --format table -o trivy-image-report.html $DOCKER_IMAGE"
+            }
+        }
+
         stage('Push to dockerhub'){
             steps{
                 script{
