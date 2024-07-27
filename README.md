@@ -23,7 +23,6 @@ This web application displays lists of board games and their reviews. While anyo
 - Twitter Bootstrap
 - Maven
 
-## CI/CD Diagram
 
 
 ![1711256345809](https://github.com/user-attachments/assets/687167f3-16bb-408c-a7c1-00780c8f4e68)
