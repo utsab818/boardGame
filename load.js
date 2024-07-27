@@ -6,7 +6,7 @@ export const options = {
    duration: '30s',
 };
 
-const BASE_URL = 'https://thanksfordomain.anishbista.xyz'
+const BASE_URL = 'https://thanks.anishbista.xyz'
 
 function demo() {
    const url = `${BASE_URL}`;
