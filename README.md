@@ -23,31 +23,16 @@ This web application displays lists of board games and their reviews. While anyo
 - Twitter Bootstrap
 - Maven
 
-## Features
+## CI/CD Diagram
 
-- Full-Stack Application
-- UI components created with Thymeleaf and styled with Twitter Bootstrap
-- Authentication and authorization using Spring Security
-  - Authentication by allowing the users to authenticate with a username and password
-  - Authorization by granting different permissions based on the roles (non-members, users, and managers)
-- Different roles (non-members, users, and managers) with varying levels of permissions
-  - Non-members only can see the boardgame lists and reviews
-  - Users can add board games and write reviews
-  - Managers can edit and delete the reviews
-- Deployed the application on AWS EC2
-- JUnit test framework for unit testing
-- Spring MVC best practices to segregate views, controllers, and database packages
-- JDBC for database connectivity and interaction
-- CRUD (Create, Read, Update, Delete) operations for managing data in the database
-- Schema.sql file to customize the schema and input initial data
-- Thymeleaf Fragments to reduce redundancy of repeating HTML elements (head, footer, navigation)
 
-## How to Run
+![1711256345809](https://github.com/user-attachments/assets/687167f3-16bb-408c-a7c1-00780c8f4e68)
 
-1. Clone the repository
-2. Open the project in your IDE of choice
-3. Run the application
-4. To use initial user data, use the following credentials.
-  - username: bugs    |     password: bunny (user role)
-  - username: daffy   |     password: duck  (manager role)
-5. You can also sign-up as a new user and customize your role to play with the application! 😊
+## Description
+ - Developed a CI/CD pipeline using Jenkins for automated image builds, testing, and registry pushes.
+ - Utilized Azure AKS for the Kubernetes cluster.
+ - Created a Dockerfile for containerizing the application.
+ - Deployed the Nginx Ingress Controller and configured DNS.
+ - Enabled HTTPS using CERT_MANAGER and applied SSL/TLS certificates.
+ - Followed GitOps practices with the use of ArgoCD.
+ - Configured Horizontal Pod Autoscaler (HPA) to increase pod count when memory utilization crosses 50%.
