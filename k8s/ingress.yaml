@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: thanksfordomain.anishbista.xyz
+  - host: thanks.anishbista.xyz
     http:
       paths:
       - path: /
@@ -20,5 +20,5 @@ spec:
               number: 8080
   tls:
   - hosts:
-    - thanksfordomain.anishbista.xyz
+    - thanks.anishbista.xyz
     secretName: app
