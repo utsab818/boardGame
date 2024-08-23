@@ -126,7 +126,7 @@ pipeline {
                 script{
                     withCredentials([string(credentialsId: 'git-cred', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            git config user.email "lolgang08@gmail.com"
+                            git config user.email "utsabsapkota4231.com"
                             git config user.name "utsab818" 
                             git add ${DEPLOYMENT_FILE}
                             git commit -m "Updated deployment image to version ${BUILD_NUMBER}"
