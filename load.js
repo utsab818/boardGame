@@ -6,7 +6,7 @@ export const options = {
    duration: '30s',
 };
 
-const BASE_URL = 'https://thanks.anishbista.xyz'
+const BASE_URL = 'https://thanks.anishbista.xyz';
 
 function demo() {
    const url = `${BASE_URL}`;
@@ -15,15 +15,16 @@ function demo() {
    check(resp, {
      'endpoint was successful': (resp) => {
        if (resp.status === 200) {
-          console.log(`PASS! url`)
-          return true
+          console.log(`PASS! ${url}`);
+          return true;
        } else {
-          console.error(`FAIL! status-code: ${resp.status}`)
-          return false
+          console.error(`FAIL! status-code: ${resp.status}`);
+          return false;
        }
+     }
    });
 }
 
 export default function() {
-  demo()
+  demo(); // Call the demo function here
 }
